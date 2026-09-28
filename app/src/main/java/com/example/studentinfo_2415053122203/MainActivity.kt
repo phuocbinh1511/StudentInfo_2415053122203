@@ -1,20 +1,34 @@
 package com.example.studentinfo_2415053122203
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.studentinfo_2415053122203.databinding.ActivityMainBinding
+import com.example.studentinfo_2415053122203.model.StudentInfo
+import com.example.studentinfo_2415053122203.utils.toPassStatus
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val student = StudentInfo(
+            id = "2415053122203",
+            name = "Hà Phước Bình",
+            className = "Kỹ thuật phần mềm",
+            age = 20,
+            score = 8.5
+        )
+
+        with(binding) {
+            tvId.text = "Mã sinh viên: ${student.id}"
+            tvName.text = "Họ tên: ${student.name}"
+            tvClass.text = "Lớp: ${student.className}"
+            tvAge.text = "Tuổi: ${student.age}"
+            tvScore.text = "Điểm: ${student.score}"
+            tvStatus.text = "Trạng thái: ${student.score.toPassStatus()}"
         }
     }
 }
