@@ -7,10 +7,10 @@ android {
     compileSdk {
         version = release(37)
     }
+
     buildFeatures {
         viewBinding = true
     }
-
     defaultConfig {
         applicationId = "com.example.studentinfo_2415053122203"
         minSdk = 24
